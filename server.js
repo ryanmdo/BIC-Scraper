@@ -15,8 +15,9 @@ var app = express();
 var apiRoutes = require('./api-routes/api-routes.js');
 var htmlRoutes = require('./api-routes/html-routes.js');
 
-app.use('/api',apiRoutes);
-app.use('/',htmlRoutes);
+app.use(apiRoutes);
+app.use(htmlRoutes);
+//app.use('/',htmlRoutes);
 
 
 //This should be the name f the mongo database
@@ -31,41 +32,30 @@ var db = mongojs(databaseURL, collections);
 
 
 //Request the page to grab its html
-request('http://bitinfocharts.com',function(err,res,html){
-    var $ = cheerio.load(html)
+//MOVED TO API-ROUTES in /api-routes
+//
+//
+// request('http://bitinfocharts.com',function(err,res,html){
+//     var $ = cheerio.load(html)
 
-    var a;
-    // should be 
-    var coinTag;
-
-
-    $('#t_price>.c_'+coinTag+'>span').each(function(i, element){
-        a += $(element).text() +'\n';
-    })
-
-    //hard-coded for the five currencies I want to track-btc,ltc,dash,xmr,eth
-    $('#t_price>.c_btc>span').each(function(i, element){
-        a += $(element).text() +'\n';
-    })
-
-    $('#t_price>.c_ltc>span').each(function(i, element){
-        a += $(element).text() +'\n';
-    })
-
-    $('#t_price>.c_dash>span').each(function(i, element){
-        a += $(element).text() +'\n';
-    })
-
-    $('#t_price>.c_xmr>span').each(function(i, element){
-        a += $(element).text() +'\n';
-    })
-
-    $('#t_price>.c_eth>span').each(function(i, element){
-        a += $(element).text() +'\n';
-    })
+//     var a;
+//     // should be 
+//     var coinTag;
 
 
-    console.log(a)
+//     $('#t_price>.c_'+coinTag+'>span').each(function(i, element){
+//         a += $(element).text() +'\n';
+//     })
+
+//     //hard-coded for the five currencies I want to track-btc,ltc,dash,xmr,eth
+//     $('#t_price>.c_xmr>span').each(function(i, element){
+//         a += $(element).text() +'\n';
+//     })
+
+
+
+
+    //console.log(a)
 
 
 
@@ -84,13 +74,16 @@ request('http://bitinfocharts.com',function(err,res,html){
     //         console.log($(this).text)
     //     }
     // })
-});
+//  
 
 
 //setup the homepage get
-app.get('/',function(req,res){
-    res.sendFile(__dirname + '/public/index.html');
-})
+// app.get('/',function(req,res){
+//     res.sendFile(__dirname + '/public/index.html');
+// })
+
+
+
 
 //Turn this damn thing on.
 app.listen(3000, function(){

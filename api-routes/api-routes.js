@@ -15,7 +15,22 @@ var bodyParser = require('body-parser');
 
 
 
-router.get('')
+router.get('/priceRequestFor',function(req,res){
+
+    // request('bitinfocharts.com',function(err,response, html){
+
+    //     console.log(reponse)
+
+
+    // })
+
+
+
+
+})
+
+
+
 
 
 
