@@ -15,7 +15,7 @@ var app = express();
 var apiRoutes = require('./api-routes/api-routes.js');
 var htmlRoutes = require('./api-routes/html-routes.js');
 
-app.use(apiRoutes);
+app.use('/api',apiRoutes);
 app.use(htmlRoutes);
 //app.use('/',htmlRoutes);
 
@@ -77,10 +77,6 @@ var db = mongojs(databaseURL, collections);
 //  
 
 
-//setup the homepage get
-// app.get('/',function(req,res){
-//     res.sendFile(__dirname + '/public/index.html');
-// })
 
 
 
