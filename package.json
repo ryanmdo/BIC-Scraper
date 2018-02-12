@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ryanmdo/bitinfocharts-price-scraper/issues"
   },
-  "homepage": "https://github.com/ryanmdo/bitinfocharts-price-scraper#readme"
+  "homepage": "https://github.com/ryanmdo/bitinfocharts-price-scraper#readme",
+  "dependencies": {
+    "express-handlebars": "^3.0.0"
+  }
 }

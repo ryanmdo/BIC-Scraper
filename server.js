@@ -4,20 +4,29 @@ var mongojs = require('mongojs');
 var cheerio = require('cheerio');
 var request = require('request');
 var bodyParser = require('body-parser');
-
+var hbs = require('express-handlebars')
+var path = require('path')
+var exphbs = require('express-handlebars')
 
 
 
 
 var app = express();
+//Use the handlebars engine
+app.engine('handlebars',exphbs({
+    defaultLayout: 'main'
+}))
+app.set('views', path.join(__dirname,'views'));
+app.set('view engine','handlebars')
 
 
+
+
+//Linking the routes in api-routes
 var apiRoutes = require('./api-routes/api-routes.js');
 var htmlRoutes = require('./api-routes/html-routes.js');
-
 app.use('/api',apiRoutes);
 app.use(htmlRoutes);
-//app.use('/',htmlRoutes);
 
 
 //This should be the name f the mongo database
@@ -33,51 +42,7 @@ var db = mongojs(databaseURL, collections);
 
 //Request the page to grab its html
 //MOVED TO API-ROUTES in /api-routes
-//
-//
-// request('http://bitinfocharts.com',function(err,res,html){
-//     var $ = cheerio.load(html)
-
-//     var a;
-//     // should be 
-//     var coinTag;
-
-
-//     $('#t_price>.c_'+coinTag+'>span').each(function(i, element){
-//         a += $(element).text() +'\n';
-//     })
-
-//     //hard-coded for the five currencies I want to track-btc,ltc,dash,xmr,eth
-//     $('#t_price>.c_xmr>span').each(function(i, element){
-//         a += $(element).text() +'\n';
-//     })
-
-
-
-
-    //console.log(a)
-
-
-
-
-    //Failed attempts at trying to extract the prices fom the html 
-
-
-    // var d = $('#t_price').children().text();
-    // console.log(d)
-    // $('#t_price').each(function(i, element){
-
-
-    //     console.log($(element).hasClass('.c_xmr'))
-    //     console.log($(this).text())
-    //     if($(this).hasClass('c_xmr')){
-    //         console.log($(this).text)
-    //     }
-    // })
-//  
-
-
-
+//DELETED
 
 
 
