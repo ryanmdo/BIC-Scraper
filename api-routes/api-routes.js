@@ -13,43 +13,37 @@ var bodyParser = require('body-parser');
 //require any other data here
 
 
+function priceRequest(coinTag){
+    console.log('Request theprices for '+coinTag+', and outputting them as spans')
+
+    request('https://bitinfocharts.com',function(error,reponse,html){
+
+             var $ = cheerio.load(html)
+             var priceBodyArr = [];
+
+             //Grabs the span which contains the 5 prices, and puts onto priceBodyArr
+             $('#t_price>.c_'+coinTag+'>span').each(function(i, element){
+                 priceBodyArr += $(element).text() +'\n';
+             })
+            
+             console.log(priceBodyArr)
+             return priceBodyArr;
+
+            
+
+    })
+}
 
 
-router.get('/priceRequestFor',function(req,res){
+router.get('/xmrRequest',function(req,res){
 
 
-    function priceGrab(coinTag){
-        console.log('Request theprices for '+coinTag+', and outputting them as spans')
-
-        request('https://bitinfocharts.com',function(error,reponse,html){
-
-                 var $ = cheerio.load(html)
-                 
-
-                 var priceBody;
- 
-                 $('#t_price>.c_'+coinTag+'>span').each(function(i, element){
-                     priceBody += $(element).text() +'\n';
-                 })
-
-                //hard-coded for the five currencies I want to trmodule.exports = router;ack-btc,ltc,dash,xmr,eth
-                $('#t_price>.c_xmr>span').each(function(i, element){
-                    priceBody += $(element).text() +'\n';
-                    
-                })
-
-                console.log(priceBody)
-
-        })
-    }
-
-    priceGrab('xmr');
-
-
-
-
+    priceRequest('xmr');
 
 })
+
+
+
 
 
 
