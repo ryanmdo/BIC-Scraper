@@ -32,8 +32,8 @@ function priceRequest(coinTag){
 
              $('#t_price>.c_'+coinTag+'>span').each(function(i, element){
                  priceBodyArr.push($(element).text());
-                 moment.locale()
-                 moment.format('LTS')
+                //  moment.locale()
+                //  moment.format('LTS')
                  console.log(priceBodyArr)
              })
             
@@ -46,16 +46,6 @@ function priceRequest(coinTag){
     return priceBodyArr;
 }
 
-//Recieves the prices in the span form and outputs trims the strings to get the USD prices 
-// function usdFilter(priceArr){
-//     console.log(priceArr)
-
-//     //filtering out for prices
-//     priceArr.forEach(function(element){
-//         console.log(element)
-//     })
-
-// }
 
 
 router.get('/xmrRequest',function(req,res){
@@ -70,6 +60,14 @@ router.get('/xmrRequest',function(req,res){
     console.log(xmrPriceArr)
 
 })
+
+//This should put the data onto the page.
+router.put('/printPrices',function(request,response){
+
+
+
+})
+
 
 
 
