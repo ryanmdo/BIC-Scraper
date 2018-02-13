@@ -61,12 +61,6 @@ router.get('/xmrRequest',function(req,res){
 
 })
 
-//This should put the data onto the page.
-router.put('/printPrices',function(request,response){
-
-
-
-})
 
 
 

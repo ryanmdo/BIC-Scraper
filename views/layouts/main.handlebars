@@ -13,6 +13,7 @@
     <!-- bootstrap jquery -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -31,7 +32,11 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="/api/xmrRequest">Update XMR</a>
+                                <a>
+                                    <button id='update-all' class='btn btn-primary'>
+                                        Update ALL
+                                    </button>
+                                </a>
                             </li>
                             
                         </ul>
@@ -51,4 +56,37 @@
 
 </html>
 
-<script src='/public/js/main'></script>
+
+
+
+
+
+
+
+
+    <script type='text/javascript'>
+    
+    window.onload = function(){
+
+        console.log('main.js has beenn successfully loaded')
+
+
+        $('h1').on('click',function(){
+            console.log('h1 has been clicked')
+        })
+
+
+        $('#update-all').on('click', function(){
+            console.log('This got clicked.')
+
+            axios({
+                method:'GET',
+                url:'/api/xmrRequest'
+            }).then(function(response){
+
+            })
+        })
+
+    }
+
+    </script>
