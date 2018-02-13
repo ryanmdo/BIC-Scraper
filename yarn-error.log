@@ -1,0 +1,49 @@
+Arguments: 
+  /usr/bin/node /home/rdo/.yarn/bin/yarn.js add moment
+
+PATH: 
+  /home/rdo/.yarn/bin:/home/rdo/bin:/home/rdo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/go/bin
+
+Yarn version: 
+  1.3.2
+
+Node version: 
+  6.12.3
+
+Platform: 
+  linux x64
+
+npm manifest: 
+  {
+    "name": "bitinfocharts-price-scraper",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node server.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ryanmdo/bitinfocharts-price-scraper.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/ryanmdo/bitinfocharts-price-scraper/issues"
+    },
+    "homepage": "https://github.com/ryanmdo/bitinfocharts-price-scraper#readme",
+    "dependencies": {
+      "express-handlebars": "^3.0.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: EACCES: permission denied, rmdir '/home/rdo/Desktop/bitinfocharts-price-scraper/node_modules/mongoose/node_modules/async'
+      at Error (native)

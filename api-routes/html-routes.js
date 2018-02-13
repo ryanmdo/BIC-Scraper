@@ -15,11 +15,7 @@ router.get('/',function(request,response){
 })
 
 
-router.get('/xmrpage',function(request,response){
 
-    console.log('/xmrpage is being requested')
-    response.sendFile(path.join(__dirname,'../public/xmrpage.html'))
-})
 
 
 
