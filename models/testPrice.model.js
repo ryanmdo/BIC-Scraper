@@ -5,8 +5,8 @@ var testPrice = new mongoose.Schema({
     bitstamp_priceof_btc:Number,
     bitfenix_priceof_btc:Number,
     kraken_priceof_btc:Number,
-    hitbtc_priceof_btc:Number,
-    gemini_priceof_btc:Number
+    gemini_priceof_btc:Number,
+    hitbtc_priceof_btc:Number
 })
 
-module.exports = mongoose.model('price_btc',testPrice);
+module.exports = mongoose.model('testPrice',testPrice);
