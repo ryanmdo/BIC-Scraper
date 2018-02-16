@@ -81,11 +81,19 @@
 
             axios({
                 method:'GET',
-                url:'/api/xmrRequest'
+                url:'/api/getAllPrices'
             }).then(function(response){
-
+                console.log(response)
             })
         })
+
+        axios({
+            method:'GET',
+            url:'/api/getAllPrices'
+        }).then(function(response){
+            console.log(response)
+        })
+        
 
     }
 

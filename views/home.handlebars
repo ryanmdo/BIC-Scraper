@@ -1,4 +1,21 @@
-<h1>Here is where them results go.</h1>
+<h1>Results.</h1>
+
+<div id='price-results'>
+
+
+</div>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+
+<script type='text/javascript'>
+    window.onload = function(){
+        
+        axios({
+            method:'GET',
+            url:'/api/getAllPrices'
+        }).then(function(response){
+            console.log(response)
+        })
+    }
+</script>
