@@ -1,32 +1,19 @@
 //Setup the routing for api calls
 var express = require('express');
-var router = express.Router();
 var path = require('path');
 var moment = require('moment');
-
-
 var mongojs = require('mongojs');
 var cheerio = require('cheerio');
 var request = require('request');
 var bodyParser = require('body-parser');
 
 
-//var d = new Date;
-//Just for getting a timestamp
-
-
+var router = express.Router();
 
 //setup mongoose and its model, connection
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1/test');
-
-var testPrice = require('../models/testPrice.model')
-
-
-//define model
-
-
-
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/test');
+var btcPrice =  require('../models/btcPrice.model')
 
 
 
@@ -34,15 +21,9 @@ var testPrice = require('../models/testPrice.model')
 //Grabs prices and returns the span(original)
 //Then it should put this into mongodb
 function priceRequest(coinTag,res){
-    console.log('Request theprices for '+coinTag+', and outputting them as spans')
-    //array of spans to return
+    console.log('Requesting the prices for '+coinTag+', and outputting them as spans')
     var priceSpanArr = [];
     var pricesFinal = {};
-
-    //Add timestamps
-    
-
-
     request('https://bitinfocharts.com',function(error,reponse,html){
             //preventDefault();
              var $ = cheerio.load(html)
@@ -79,7 +60,12 @@ function priceRequest(coinTag,res){
             res.json(pricesFinal);
     })
 
-
+    var btcPrice = mongoose.model('SHOULD NOT BE USED',btcPriceSchema);
+    var data = new btcPrice(pricesFinal)
+    data.time_unix = pricesFinal.time_unix;
+    data.save();
+    //newBtcPrice.time_unix = pricesFinal.time_unix;
+    //mongoose.model('testPrices',pricesFinal);    
     //For whatever reason this priceSpanArr is empty, the one above contains the data
     //console.log(priceSpanArr)
 }
@@ -96,6 +82,8 @@ router.get('/getCompletePriceTable',function(req,res){
     
     res.json('LOL THIS AINT READY YET')
 })
+
+
 
 router.post('/updatePriceTable',function(req,res){
     console.log('/updatePriceTable is being requested')

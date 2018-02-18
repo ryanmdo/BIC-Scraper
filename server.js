@@ -28,6 +28,11 @@ var htmlRoutes = require('./api-routes/html-routes.js');
 app.use('/api',apiRoutes);
 app.use(htmlRoutes);
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended:true
+}));
+
 
 //This should be the name f the mongo database
 var databaseURL = 'bic_db';
