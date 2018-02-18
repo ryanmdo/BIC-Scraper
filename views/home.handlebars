@@ -1,21 +1,45 @@
 <h1>Results.</h1>
 
-<div id='price-results'>
 
+<div class='row'>
+    <div class='col-md-12' id='price-results'>
+        <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th class='col-md-1 text-warning'>Coin</th>
+            <th class='col-md-2 text-info'>DD-MM-YYYY [H:M]</th>
+            <Th class='col-md-1'>Price#1</Th>
+            <Th class='col-md-1'>Price#2</Th>
+            <Th class='col-md-1'>Price#3</Th>
+            <Th class='col-md-1'>Price#4</Th>
+            <Th class='col-md-1'>Price#5</Th>
+            <th class='col-md-4'>Comments</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th class='col-md-1 text-warning'>DASH</th>
+            <th class='col-md-2 text-info'>11-11-1111 [24:00]</th>
+            <Th class='col-md-1'>$111.111.11</Th>
+            <Th class='col-md-1'>$111.111.11</Th>
+            <Th class='col-md-1'>$111.111.11</Th>
+            <Th class='col-md-1'>$111.111.11</Th>
+            <Th class='col-md-1'>$111.111.11</Th>
+            <th class='col-md-4'>Wow, such a high price increase in the last 24 hours! This is insanity!</th>
+        </tr>
+        </tbody>
+    </table>
 
+    </div>
 </div>
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
 
 <script type='text/javascript'>
-    window.onload = function(){
-        
-        axios({
-            method:'GET',
-            url:'/api/getAllPrices'
-        }).then(function(response){
-            console.log(response)
-        })
-    }
+
+
+
+
 </script>

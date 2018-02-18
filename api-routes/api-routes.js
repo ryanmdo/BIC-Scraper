@@ -57,23 +57,25 @@ function priceRequest(coinTag,res){
              for (var i = 0;i<priceSpanArr.length;i++){
                  if(priceSpanArr[i].includes(':')){
                      //console.log('About to add "'+priceSpanArr[i]+'" to mongoose')
-                     //Split the strings into the name of the exchange, and the price. That is it.
+                     //split the strings into the name of the exchange, and the price. That is it.
                      var exchangeText = priceSpanArr[i].split(':')[0];
                      var usdPriceText = priceSpanArr[i].split(':')[1];
                      var indexOfUSD = usdPriceText.indexOf('USD');
                      usdPriceText = usdPriceText.slice(1,indexOfUSD-1).replace(/[^\d\.\-]/g, "");
 
-                     console.log(exchangeText+" shows a price of "+usdPriceText)
 
-                     //Put into the pricesFinal array so that it is eventually pushed backed
-                     var key = exchangeText+'_priceof_btc';
+                     //put into the pricesFinal array so that it is eventually pushed backed
+                     var key = 'usd_btc_priceAt_'+exchangeText;
                      pricesFinal[key] = Number(usdPriceText)
                      //lifted from stackoverflow, a method of removing commas from numbers as strings                     //Below, manage to input the values into the mongoose test database.
                     }
              }
             //Add timestamps here
-            pricesFinal['unix_time'] = Date.now();
-            pricesFinal['string_time']=Date(Date.UTC()).toString();
+            pricesFinal['time_unix'] = Date.now();
+            pricesFinal['time_utc']=Date(Date.UTC()).toString();
+            var d = new Date();
+            pricesFinal['time_display']= (d.getDate()+1)+'-'+(d.getMonth()+1)+'-'+d.getFullYear()+' ['+d.getHours()+':'+d.getMinutes()+']';
+            //Date(Date.getDate()+'-'+Date.getMonth()+'-'+Date.getFullYear());
             res.json(pricesFinal);
     })
 
