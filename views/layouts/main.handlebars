@@ -64,38 +64,59 @@
 
 
 
-    <script type='text/javascript'>
-    
-    window.onload = function(){
+<script type='text/javascript'>
 
-        console.log('main.js has beenn successfully loaded')
+window.onload = function(){
 
-
-        $('h1').on('click',function(){
-            console.log('h1 has been clicked')
-        })
+    console.log('main.js has beenn successfully loaded')
 
 
-        $('#update-all').on('click', function(){
-            console.log('This got clicked.')
+    $('h1').on('click',function(){
+        console.log('h1 has been clicked')
+    })
 
-            axios({
-                method:'GET',
-                url:'/api/getAllPrices'
-            }).then(function(response){
-                console.log(response)
-            })
-        })
 
+    $('#update-all').on('click', function(){
+        //This one should be a post method, because it does change data
+        //on the server-side
         axios({
-            method:'GET',
-            url:'/api/getAllPrices'
+            method:'post',
+            url:'/api/updatePriceTable'
         }).then(function(response){
-            console.log('THE FRONT END HAS RECEIVED THE RESPONSE: ')
+
+            console.log('/api/updatePriceTable is being requested')
             console.log(response)
+
+            //Append the resulting data onto the table
+            //console.log('The data is being placed onto the table')
+            var tableRow = $('<tr>')
+            $('#price-complete-table').append(tableRow)
         })
-        
+    })
 
-    }
 
-    </script>
+    //This is the one that ought to be a get request
+    /*
+    axios({
+        method:'GET'
+        url:'/api/getTestPriceTable'
+    }).then(function(resposnse){
+
+    })
+    */
+
+
+    
+    axios({
+        method:'GET',
+        url:'/api/getCompletePriceTable'
+    }).then(function(response){
+        console.log('THE FRONT END HAS RECEIVED THE RESPONSE: ')
+        console.log(response)
+    })
+    
+    
+
+}
+
+</script>

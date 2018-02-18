@@ -88,15 +88,24 @@ function priceRequest(coinTag,res){
 
 
 
-router.get('/getAllPrices',function(req,res){
+router.get('/getCompletePriceTable',function(req,res){
 
-    console.log('/getAllPrices is being gotten')
+    console.log('/getCompletePriceTable is being gotten')
+    console.log('But it is not working as of yet')
 
+    
+    res.json('LOL THIS AINT READY YET')
+})
+
+router.post('/updatePriceTable',function(req,res){
+    console.log('/updatePriceTable is being requested')
 
     var finalPrices = priceRequest('btc',res)
     console.log(finalPrices)
-    
+    console.log()
 })
+
+
 
 router.get('/mongoTest',function(request,response){
     mongoose.model('testPrices').find(function(err, results){
