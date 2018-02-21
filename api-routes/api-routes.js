@@ -8,13 +8,17 @@ var request = require('request');
 var bodyParser = require('body-parser');
 
 
+
 var router = express.Router();
 
 //setup mongoose and its model, connection
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test');
-var btcPrice =  require('../models/btcPrice.model')
+//var mongoose = require('mongoose');
+//mongoose.connect('mongodb://localhost:27017/test');
+//var btcPrice =  require('../models/btcPrice.model')
 
+//try monk
+const db = require('monk')('localhost/test_btc_db');    
+const btc_collection = db.get('btc_collection');
 
 
 
@@ -53,17 +57,30 @@ function priceRequest(coinTag,res){
              }
             //Add timestamps here
             pricesFinal['time_unix'] = Date.now();
-            pricesFinal['time_utc']=Date(Date.UTC()).toString();
+            pricesFinal['time_utc'] = Date(Date.UTC()).toString();
             var d = new Date();
-            pricesFinal['time_display']= (d.getDate()+1)+'-'+(d.getMonth()+1)+'-'+d.getFullYear()+' ['+d.getHours()+':'+d.getMinutes()+']';
+            pricesFinal['time_display'] = (d.getDate()+1)+'-'+(d.getMonth()+1)+'-'+d.getFullYear()+' ['+d.getHours()+':'+d.getMinutes()+']';
             //Date(Date.getDate()+'-'+Date.getMonth()+'-'+Date.getFullYear());
             res.json(pricesFinal);
+
+            btc_collection.insert({
+                time_display:pricesFinal.time_display,
+                time_unix: pricesFinal.time_unix,
+                time_utc: pricesFinal.time_utc,
+                usd_btc_priceAt_bitfinex: pricesFinal.usd_btc_priceAt_bitfinex,
+                usd_btc_priceAt_bitstamp: pricesFinal.usd_btc_priceAt_bitstamp,
+                usd_btc_priceAt_gdax: pricesFinal.usd_btc_priceAt_gdax,
+                usd_btc_priceAt_gemini: pricesFinal.usd_btc_priceAt_gemini,
+                usd_btc_priceAt_kraken: pricesFinal.usd_btc_priceAt_kraken
+            })
     })
 
-    var btcPrice = mongoose.model('SHOULD NOT BE USED',btcPriceSchema);
-    var data = new btcPrice(pricesFinal)
-    data.time_unix = pricesFinal.time_unix;
-    data.save();
+    
+
+    //var btcPrice = mongoose.model('SHOULD NOT BE USED',btcPriceSchema);
+    //var data = new btcPrice(pricesFinal)
+    //data.time_unix = pricesFinal.time_unix;
+    //data.save();
     //newBtcPrice.time_unix = pricesFinal.time_unix;
     //mongoose.model('testPrices',pricesFinal);    
     //For whatever reason this priceSpanArr is empty, the one above contains the data
