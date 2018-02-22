@@ -68,7 +68,7 @@
 
 window.onload = function(){
 
-    console.log('main.js has beenn successfully loaded')
+    console.log('js script inside of main.handlebars is being used')
 
 
     $('h1').on('click',function(){
@@ -86,12 +86,15 @@ window.onload = function(){
 
             console.log('/api/updatePriceTable is being requested')
             console.log(response)
+            
 
             //Append the resulting data onto the table
             //console.log('The data is being placed onto the table')
             var tableRow = $('<tr>')
             $('#price-complete-table').append(tableRow)
+            
         })
+        location.reload()
     })
 
 
@@ -107,13 +110,7 @@ window.onload = function(){
 
 
     
-    axios({
-        method:'GET',
-        url:'/api/getCompletePriceTable'
-    }).then(function(response){
-        console.log('THE FRONT END HAS RECEIVED THE RESPONSE: ')
-        console.log(response)
-    })
+    
     
     
 

@@ -27,7 +27,9 @@ const btc_collection = db.get('btc_collection');
 function priceRequest(coinTag,res){
     console.log('Requesting the prices for '+coinTag+', and outputting them as spans')
     var priceSpanArr = [];
-    var pricesFinal = {};
+    var pricesFinal = {
+        coinTag: coinTag
+    };
     request('https://bitinfocharts.com',function(error,reponse,html){
             //preventDefault();
              var $ = cheerio.load(html)
@@ -64,7 +66,8 @@ function priceRequest(coinTag,res){
             res.json(pricesFinal);
 
             btc_collection.insert({
-                time_display:pricesFinal.time_display,
+                coinTag: pricesFinal.coinTag,
+                time_display: pricesFinal.time_display,
                 time_unix: pricesFinal.time_unix,
                 time_utc: pricesFinal.time_utc,
                 usd_btc_priceAt_bitfinex: pricesFinal.usd_btc_priceAt_bitfinex,
@@ -94,10 +97,14 @@ function priceRequest(coinTag,res){
 router.get('/getCompletePriceTable',function(req,res){
 
     console.log('/getCompletePriceTable is being gotten')
-    console.log('But it is not working as of yet')
 
-    
-    res.json('LOL THIS AINT READY YET')
+    //simply grab all of the collections and spit them back
+    //no time for validation here
+    btc_collection.find({}).then(function(response){
+        //console.log(response)
+        res.json(response)
+    })
+
 })
 
 
@@ -111,12 +118,13 @@ router.post('/updatePriceTable',function(req,res){
 })
 
 
+// Forgot what I was doing here
 
-router.get('/mongoTest',function(request,response){
-    mongoose.model('testPrices').find(function(err, results){
-        response.send(results);
-    })
-})
+// router.get('/mongoTest',function(request,response){
+//     mongoose.model('testPrices').find(function(err, results){
+//         response.send(results);
+//     })
+// })
 
 
 

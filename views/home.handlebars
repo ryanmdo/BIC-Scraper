@@ -1,9 +1,6 @@
-<h1>Results.</h1>
-
-
 <div class='row'>
     <div class='col-md-12' id='price-results'>
-        <table id='price-complete-table' class="table table-bordered">
+        <table class="table table-bordered">
         <thead>
         <tr>
             <th class='col-md-1 text-warning'>Coin</th>
@@ -16,17 +13,8 @@
             <th class='col-md-4 text-success'>Comments</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <th class='col-md-1 text-warning'>DASH</th>
-            <th class='col-md-2 text-info'>11-11-1111 [24:00]</th>
-            <Th class='col-md-1'>$111.111.11</Th>
-            <Th class='col-md-1'>$111.111.11</Th>
-            <Th class='col-md-1'>$111.111.11</Th>
-            <Th class='col-md-1'>$111.111.11</Th>
-            <Th class='col-md-1'>$111.111.11</Th>
-            <th class='col-md-4 text-success'>Wow, such a high price increase in the last 24 hours! This is insanity!</th>
-        </tr>
+        <tbody id='price-complete-table-body' >
+            
         </tbody>
     </table>
 
@@ -38,8 +26,51 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
 
 <script type='text/javascript'>
+console.log('the js script inside of home.handlebars is being used')
 
 
+
+axios({
+    methos: 'GET',
+    url: '/api/getCompletePriceTable'
+}).then(function(response){
+    //Insert the data into the tables, using the above as a template
+    console.log(response)
+
+    
+    //should loop for each response.data object
+    for(var i=0;i<response.data.length;i++){
+
+        var priceRow = $('<tr>');
+        var priceRowTHCoinTag = $('<th>');
+        priceRowTHCoinTag.attr('class','col-md-1 text-warning');
+        priceRowTHCoinTag.html(response.data[i].coinTag.toUpperCase())
+        priceRow.append(priceRowTHCoinTag)
+
+        var priceRowTHTimeDate = $('<th>');
+        priceRowTHTimeDate.attr('class','col-md-2 text-info');
+        priceRowTHTimeDate.html(response.data[i].time_display)
+        priceRow.append(priceRowTHTimeDate)
+
+        //nested-loop for each of the various prices
+        for(var j=0;j<5;j++){
+            var priceRowTHPriceEntry = $('<th>');
+            priceRowTHPriceEntry.attr('class','col-md-1');
+            console.log(response.data[i])
+            priceRowTHPriceEntry.html('$'+response.data[i].usd_btc_priceAt_kraken)
+            priceRow.append(priceRowTHPriceEntry)
+        }
+        
+         var priceRowTHComments = $('<th>');
+        priceRowTHComments.attr('class','col-md-4 text-success');
+        priceRowTHComments.html('COMMENTS')
+        priceRow.append(priceRowTHComments);
+
+        $('#price-complete-table-body').append(priceRow)
+
+    }
+    console.log(response.data)
+})
 
 
 </script>
