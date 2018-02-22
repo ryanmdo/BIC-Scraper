@@ -6,4 +6,4 @@ bitinfocharts-price-scraper(bic-scraper) is a basic web application that scrapes
 
 #### Example
 
-![Mainpage](/github-images/mainpage.png)
+![Mainpage](https://raw.githubusercontent.com/ryanmdo/bitinfocharts-price-scraper/master/github-images/mainpage.png)
