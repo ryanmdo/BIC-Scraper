@@ -10,6 +10,15 @@ The final functionality of this app will ideally to be a complete web applicatio
 
 The application hsa one button which is found in the header panel. It simple retrieves the price, and posts it to the mongo database.
 
+### Basic Deployment
+
+The application simply requires a mongodb named 'test_btc_db.' It should then only require
+
+```
+npm install
+npm start
+```
+
 
 ##### Current Bugs/Issues
 
