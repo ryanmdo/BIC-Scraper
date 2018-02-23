@@ -2,7 +2,7 @@
 
 bitinfocharts-price-scraper(bic-scraper) is a basic web application that scrapes prices off of bitinfocharts.com and generates a table of prices. 
 
-The final functionality of this app will ideally to be a complete web application that can run on a raspberry pi and automatically retreive prices. Then it visualizes the data for the user. As of now, this is in an extremely early stage, and it barely achieves the bare minumum functionality necessary. 
+The final functionality of this app will ideally to be a complete web application that can run on a raspberry pi and automatically retreive prices. Then it visualizes the data for the user. As of now, this is in an extremely early stage, and it barely achieves the basic required functionality. 
 
 ### Example
 
