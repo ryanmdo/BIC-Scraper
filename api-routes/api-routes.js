@@ -111,6 +111,8 @@ router.get('/getCompletePriceTable',function(req,res){
 
 
 
+
+
 router.post('/updatePriceTable',function(req,res){
     console.log('/updatePriceTable is being requested')
 
