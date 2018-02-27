@@ -19,7 +19,6 @@ npm install
 npm start
 ```
 
-
 ##### Current Bugs/Issues
 
 There are numerous issues that need to be resolved.

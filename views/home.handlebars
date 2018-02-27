@@ -60,11 +60,35 @@ axios({
             priceRowTHPriceEntry.html('$'+response.data[i].usd_btc_priceAt_kraken)
             priceRow.append(priceRowTHPriceEntry)
         }
+
         
-         var priceRowTHComments = $('<th>');
-        priceRowTHComments.attr('class','col-md-4 text-success');
-        priceRowTHComments.html('COMMENTS')
-        priceRow.append(priceRowTHComments);
+        
+        var priceRowTHComments = $('<th>');
+            priceRowTHComments.attr('class','col-md-4 text-alert');
+
+        //if-else for whether or not there are comments for this row
+        //Insert bootstrap button with input for comment
+        if(response.data[i].comments===''){
+
+            var priceCommentButton = $('<button>')
+            priceCommentButton.attr('class','btn btn-warning');
+            priceCommentButton.html('Add Comment')
+
+            var priceCommentInput = $('<input>')
+            priceCommentInput.attr('type','text');
+            priceCommentInput.attr('class','form-control');
+            priceCommentInput.attr('placeholder','These prices are...');
+
+            priceRow.append(priceCommentInput)
+            priceRow.append(priceCommentButton);
+        } else{
+            var priceCommentInput = $('<span>')
+            priceCommentInput.html(response.data[i].comments);
+            //priceCommentInput.html(response.data[i].comments)
+            
+            priceRow.append(priceCommentInput)
+
+        }
 
         $('#price-complete-table-body').append(priceRow)
 

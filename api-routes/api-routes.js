@@ -29,6 +29,7 @@ function priceRequest(coinTag,res){
     var priceSpanArr = [];
     var pricesFinal = {
         coinTag: coinTag
+        
     };
     request('https://bitinfocharts.com',function(error,reponse,html){
             //preventDefault();
@@ -74,7 +75,8 @@ function priceRequest(coinTag,res){
                 usd_btc_priceAt_bitstamp: pricesFinal.usd_btc_priceAt_bitstamp,
                 usd_btc_priceAt_gdax: pricesFinal.usd_btc_priceAt_gdax,
                 usd_btc_priceAt_gemini: pricesFinal.usd_btc_priceAt_gemini,
-                usd_btc_priceAt_kraken: pricesFinal.usd_btc_priceAt_kraken
+                usd_btc_priceAt_kraken: pricesFinal.usd_btc_priceAt_kraken,
+                comments: ''
             })
     })
 
