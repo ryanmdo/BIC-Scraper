@@ -98,6 +98,12 @@ window.onload = function(){
     })
 
 
+    $('#commentary-button').on('click', function(){
+        console.log($(this).attr('mongo-id'))
+        console.log($(this).val())
+    })
+
+
     //This is the one that ought to be a get request
     /*
     axios({

@@ -72,6 +72,8 @@ axios({
 
             var priceCommentButton = $('<button>')
             priceCommentButton.attr('class','btn btn-warning');
+            priceCommentButton.attr('id','commentary-button');
+            priceCommentButton.attr('mongo-id',response.data[i]._id);
             priceCommentButton.html('Add Comment')
 
             var priceCommentInput = $('<input>')
