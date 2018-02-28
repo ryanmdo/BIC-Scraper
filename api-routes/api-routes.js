@@ -15,9 +15,9 @@ var router = express.Router();
 //var mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost:27017/test');
 //var btcPrice =  require('../models/btcPrice.model')
-
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/test_btc_db";
 //try monk
-const db = require('monk')('localhost/test_btc_db');    
+const db = require('monk')(MONGODB_URI);    
 const btc_collection = db.get('btc_collection');
 
 
