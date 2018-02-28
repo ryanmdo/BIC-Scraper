@@ -6,11 +6,11 @@ The final functionality of this app will ideally to be a complete web applicatio
 
 ### Example
 
-![Mainpage](https://raw.githubusercontent.com/ryanmdo/bitinfocharts-price-scraper/master/github-images/single-button.png)
+![mingle-button](https://raw.githubusercontent.com/ryanmdo/bitinfocharts-price-scraper/master/github-images/single-button.png)
 
 The application hsa one button which is found in the header panel. It simple retrieves the price, and posts it to the mongo database. A refresh is required in order to display the updated table. Upon adding more prices, the table will eventually fill up
 
-![Mainpage](https://raw.githubusercontent.com/ryanmdo/bitinfocharts-price-scraper/master/github-images/more-prices.png)
+![More-prices](https://raw.githubusercontent.com/ryanmdo/bitinfocharts-price-scraper/master/github-images/more-prices.png)
 
 ### Basic Deployment
 
